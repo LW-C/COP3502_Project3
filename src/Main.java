@@ -53,6 +53,50 @@ public class Main
                 System.out.println("\nThat is not a valid choice. Try again.");
             }
 
+            scanner.nextLine();
+
+            System.out.println("\n1. List Pokemon");
+            System.out.println("2. Add Pokemon");
+            System.out.println("3. Check a Pokemon's Stats");
+            System.out.println("4. Evolve a Pokemon");
+            System.out.println("5. Sort Pokemon");
+            System.out.println("6. Exit");
+            System.out.println("\nWhat would you like to do? ");
+        }
+        return userChoice;
+    }
+
+    /*
+     *  The goal of checkNumInRegion is to check the input
+     *  that the user gives for the number of Pokemon in the
+     *  region to make sure that it is an int.
+     */
+    public static int checkNumInRegion()
+    {
+        int userChoice = 0;
+        Boolean error = true;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("How many Pokemon are in your region: ");
+
+        while (error)
+        {
+            try
+            {
+                userChoice = scanner.nextInt();
+
+                error = false;
+                return userChoice;
+
+            }
+            catch (InputMismatchException notAnInt)
+            {
+                System.out.println("\nThat is not a valid choice. Try again.");
+            }
+            catch (Exception except)
+            {
+                System.out.println("\nThat is not a valid choice. Try again.");
+            }
 
             scanner.nextLine();
 
@@ -65,47 +109,48 @@ public class Main
             System.out.println("\nWhat would you like to do? ");
         }
         return userChoice;
-
     }
 
-    public static main(String[] args)
+    public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
         Boolean runAgain = true;
         int choice = 1;
-        String userInput;
+        int userInput;
 
-
-
-        //Take the number of Pokemon in the area from the user
+        //Take the number of Pokemon in the region from the user
         System.out.println("Welcome to your new PokeDex!");
-        System.out.println("How many Pokemon are in your region: ");
-        userInput = scanner.nextLine();
-        //need to check this input
-
+        userInput = checkNumInRegion();
 
         while (runAgain)
         {
-            /**
-             *  Get text from user
+            /*
              *  Go to the printOptionsAndCatchErrors method to get the user's choice
              *  Carry out the choice that the user selects
-             **/
+             */
 
             choice = printOptionsAndCatchErrors();
 
             //What to do based on user's choice
             if (choice == 1)
             {
-                //
+                //List Pokemon
             }
             else if (choice == 2)
             {
-                //
+                //Add a Pokemon
             }
             else if (choice == 3)
             {
-                //
+                //Check a Pokemon's Stats
+            }
+            else if (choice == 4)
+            {
+                //Evolve a Pokemon
+            }
+            else if (choice == 5)
+            {
+                //Sort the Pokemon
             }
             else if (choice == 6)
             {
