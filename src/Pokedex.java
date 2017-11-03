@@ -15,7 +15,7 @@ public class Pokedex
     {
         String[] names;
         names = new String[pokemons.length];
-        //Add the name of each Pokemon to the array of names
+
         for(int index = 0; index > pokemons.length; index++)
         {
             names[index] = pokemons[index].getSpecies();
@@ -26,15 +26,34 @@ public class Pokedex
     /*
      *  Add a Pokemon to the Pokedex and return true if it can
      *  actually be added to the Pokedex. If not, return false.
-     *  If the Pokemon trying to be added is already in the Pokedex,
-     *  then print out "Pokemon already in Pokedex" and return false.
      */
     public boolean addPokemon(String species)
     {
-        boolean boo = false;
-        //check all of the conditions
+        if (pokemons[pokemons.length - 1] != null)
+        {
+            System.out.println("Max");
+            return false;
+        }
 
-        return boo;
+        for(int index = 0; index < pokemons.length; index++)
+        {
+            if ((pokemons[index] != null) && (species.equalsIgnoreCase(pokemons[index].getSpecies())))
+            {
+                System.out.println("Duplicate");
+                return false;
+            }
+        }
+
+        for(int index = 0; index < pokemons.length; index++)
+        {
+            if (pokemons[index] == null)
+            {
+                pokemons[index] = new Pokemon(species);
+                return true;
+            }
+        }
+
+        return true;
     }
 
     /*

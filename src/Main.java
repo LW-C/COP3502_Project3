@@ -149,6 +149,10 @@ public class Main
             else if (choice == 2)
             {
                 //Add a Pokemon
+                System.out.print("\nPlease enter the Pokemon's Species: ");
+                String input = scanner.nextLine();
+
+                pokedex.addPokemon(input);
             }
             else if (choice == 3)
             {
