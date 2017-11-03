@@ -21,7 +21,7 @@ public class Main
         System.out.println("4. Evolve a Pokemon");
         System.out.println("5. Sort Pokemon");
         System.out.println("6. Exit");
-        System.out.println("\nWhat would you like to do? ");
+        System.out.print("\nWhat would you like to do? ");
 
 
         while (error)
@@ -61,7 +61,7 @@ public class Main
             System.out.println("4. Evolve a Pokemon");
             System.out.println("5. Sort Pokemon");
             System.out.println("6. Exit");
-            System.out.println("\nWhat would you like to do? ");
+            System.out.print("\nWhat would you like to do? ");
         }
         return userChoice;
     }
@@ -77,7 +77,7 @@ public class Main
         Boolean error = true;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("How many Pokemon are in your region: ");
+        System.out.print("How many Pokemon are in your region: ");
 
         while (error)
         {
@@ -117,10 +117,12 @@ public class Main
         Boolean runAgain = true;
         int choice = 1;
         int userInput;
+        Pokedex pokedex;
 
         //Take the number of Pokemon in the region from the user
         System.out.println("Welcome to your new PokeDex!");
         userInput = checkNumInRegion();
+        pokedex = new Pokedex(userInput);
 
         while (runAgain)
         {
@@ -135,6 +137,14 @@ public class Main
             if (choice == 1)
             {
                 //List Pokemon
+                String[] names = pokedex.listPokemon();
+                for(int index = 0; index < names.length; index++)
+                {
+                    if (names[index] == null)
+                        break;
+
+                    System.out.println((index + 1) + ". " + names[index]);
+                }
             }
             else if (choice == 2)
             {

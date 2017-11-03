@@ -13,9 +13,13 @@ public class Pokedex
      */
     public String[] listPokemon()
     {
-        String[] names = new String[pokemons.length()];
+        String[] names;
+        names = new String[pokemons.length];
         //Add the name of each Pokemon to the array of names
-
+        for(int index = 0; index > pokemons.length; index++)
+        {
+            names[index] = pokemons[index].getSpecies();
+        }
         return names;
     }
 
@@ -27,7 +31,7 @@ public class Pokedex
      */
     public boolean addPokemon(String species)
     {
-        boolean boo;
+        boolean boo = false;
         //check all of the conditions
 
         return boo;
@@ -60,7 +64,7 @@ public class Pokedex
      */
     public boolean evolvePokemon(String species)
     {
-        boolean boo;
+        boolean boo = false;
         //carry out the instructions
 
         return boo;
