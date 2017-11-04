@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Pokedex
 {
     private Pokemon[] pokemons;
@@ -98,6 +100,25 @@ public class Pokedex
     public void sortPokedex()
     {
         //Use a sort method from project 2???
+        String[] names = listPokemon();
+        Arrays.sort(names);
+        Pokemon[] pokemons1 = new Pokemon[pokemons.length];
+
+        for (int a = 0; a < pokemons.length; a++)
+        {
+            pokemons1[a] = pokemons[a];
+        }
+
+        for (int b = 0; b < names.length; b++)
+        {
+            for(int c = 0; c < pokemons1.length; c++)
+            {
+                if (names[b].equals(pokemons1[c].getSpecies()))
+                {
+                    pokemons[b] = pokemons1[c];
+                }
+            }
+        }
     }
 
     /*

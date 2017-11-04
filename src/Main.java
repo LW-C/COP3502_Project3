@@ -188,6 +188,7 @@ public class Main
             else if (choice == 5)
             {
                 //Sort the Pokemon
+                pokedex.sortPokedex();
             }
             else if (choice == 6)
             {
