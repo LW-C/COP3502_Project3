@@ -63,9 +63,33 @@ public class Pokedex
     public int[] checkStats(String species)
     {
         int[] stats = new int[3];
-        //add info to the array
+        boolean boo = false;
+        int num = 0;
 
-        return stats;
+        for(int index = 0; index < pokemons.length; index++)
+        {
+            if ((pokemons[index] != null) && (species.equalsIgnoreCase(pokemons[index].getSpecies())))
+            {
+                num = index;
+                boo = true;
+            }
+        }
+
+        if (boo)
+        {
+            stats[0] = pokemons[num].getAttack();
+            stats[1] = pokemons[num].getDefense();
+            stats[2] = pokemons[num].getSpeed();
+            return stats;
+        }
+        else
+        {
+            stats[0] = -1;
+            stats[1] = -1;
+            stats[2] = -1;
+            return stats;
+        }
+
     }
 
     /*
@@ -84,7 +108,21 @@ public class Pokedex
     public boolean evolvePokemon(String species)
     {
         boolean boo = false;
-        //carry out the instructions
+        int num = -1;
+
+        for(int index = 0; index < pokemons.length; index++)
+        {
+            if ((pokemons[index] != null) && (species.equalsIgnoreCase(pokemons[index].getSpecies())))
+            {
+                num = index;
+                boo = true;
+            }
+        }
+
+        if (boo)
+        {
+            pokemons[num].evolve();
+        }
 
         return boo;
     }

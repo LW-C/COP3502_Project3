@@ -157,10 +157,33 @@ public class Main
             else if (choice == 3)
             {
                 //Check a Pokemon's Stats
+                int[] stats = new int[3];
+
+                System.out.print("\nPlease enter the Pokemon of interest: ");
+                String input = scanner.nextLine();
+
+                stats = pokedex.checkStats(input);
+
+                if((stats[0] != -1) && (stats[1] != -1) && (stats[2] != -1))
+                {
+                    System.out.println("The stats for " + input + " are:");
+                    System.out.println("Attack: " + stats[0]);
+                    System.out.println("Defense: " + stats[1]);
+                    System.out.println("Speed: " + stats[2]);
+                }
+                else
+                    System.out.println("Missing");
             }
             else if (choice == 4)
             {
                 //Evolve a Pokemon
+                System.out.print("\nPlease enter the Pokemon of interest: ");
+                String input = scanner.nextLine();
+
+                if (pokedex.evolvePokemon(input))
+                    System.out.println(input + " has evolved!");
+                else
+                    System.out.println("Missing");
             }
             else if (choice == 5)
             {
