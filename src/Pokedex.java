@@ -18,8 +18,10 @@ public class Pokedex
         String[] names;
         names = new String[pokemons.length];
 
-        for(int index = 0; index > pokemons.length; index++)
+        for(int index = 0; index < pokemons.length; index++)
         {
+            if(pokemons[index] == null)
+                return names;
             names[index] = pokemons[index].getSpecies();
         }
         return names;
@@ -99,9 +101,22 @@ public class Pokedex
      */
     public void sortPokedex()
     {
-        //Use a sort method from project 2???
         String[] names = listPokemon();
-        Arrays.sort(names);
+
+        int x = names.length;
+
+        for(int index = 0; index < names.length; index++)
+        {
+            if(names[index] == null)
+            {
+                x = index + 1;
+                break;
+            }
+
+        }
+
+        Arrays.sort(names, 0, x);
+
         Pokemon[] pokemons1 = new Pokemon[pokemons.length];
 
         for (int a = 0; a < pokemons.length; a++)

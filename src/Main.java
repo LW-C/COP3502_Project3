@@ -123,6 +123,7 @@ public class Main
         System.out.println("Welcome to your new PokeDex!");
         userInput = checkNumInRegion();
         pokedex = new Pokedex(userInput);
+        System.out.println("\nYour new Pokedex can hold " + userInput + " Pokemon. Let's start using it!");
 
         while (runAgain)
         {
@@ -166,7 +167,7 @@ public class Main
 
                 if((stats[0] != -1) && (stats[1] != -1) && (stats[2] != -1))
                 {
-                    System.out.println("The stats for " + input + " are:");
+                    System.out.println("\nThe stats for " + input + " are:");
                     System.out.println("Attack: " + stats[0]);
                     System.out.println("Defense: " + stats[1]);
                     System.out.println("Speed: " + stats[2]);
