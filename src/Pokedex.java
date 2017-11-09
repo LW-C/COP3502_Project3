@@ -16,12 +16,26 @@ public class Pokedex
     public String[] listPokemon()
     {
         String[] names;
-        names = new String[pokemons.length];
+        int a = 0;
+        int indexA = 0;
 
-        for(int index = 0; index < pokemons.length; index++)
+        for(indexA = 0; indexA <= pokemons.length; indexA++)
         {
-            if(pokemons[index] == null)
-                return names;
+            if(indexA == pokemons.length)
+            {
+                a = indexA;
+            }
+            else if (pokemons[indexA] == null)
+            {
+                a = indexA;
+                break;
+            }
+        }
+
+        names = new String[a];
+
+        for(int index = 0; index < a; index++)
+        {
             names[index] = pokemons[index].getSpecies();
         }
         return names;
@@ -101,40 +115,74 @@ public class Pokedex
      */
     public void sortPokedex()
     {
-        String[] names = listPokemon();
-
-        int x = names.length;
-
-        for(int index = 0; index < names.length; index++)
-        {
-            if(names[index] == null)
-            {
-                x = index + 1;
-                break;
-            }
-
-        }
-
-        Arrays.sort(names, 0, x);
+        String[] names = sortNames();
 
         Pokemon[] pokemons1 = new Pokemon[pokemons.length];
 
+        //creating a copy of the array to iterate through
         for (int a = 0; a < pokemons.length; a++)
         {
             pokemons1[a] = pokemons[a];
         }
 
+        //putting the Pokemon in order
         for (int b = 0; b < names.length; b++)
         {
             for(int c = 0; c < pokemons1.length; c++)
             {
-                if (names[b].equals(pokemons1[c].getSpecies()))
+                if(pokemons1[c] == null)
+                    break;
+                else if (names[b].equals(pokemons1[c].getSpecies()))
                 {
                     pokemons[b] = pokemons1[c];
+                    break;
                 }
             }
         }
     }
+
+
+    public String[] sortNames()
+    {
+        String[] names = listPokemon();
+        ArrayList<String> names1 = new ArrayList<String>();
+
+        for(int a = 0; a < names.length; a++)
+        {
+            int b = 0;
+            for (int c = 0; c <= names1.size() && c < names.length; c++)
+            {
+                if(a == 0)
+                {
+                    names1.add(names[a]);
+                    break;
+                }
+                else
+                {
+                    b = names[a].compareTo(names1.get(c));
+
+                    if (b < 0)
+                    {
+                        //this name belongs in the ArrayList before the one it's being compared to
+                        names1.add(c, names[a]);
+                        break;
+                    }
+                    else if (b == 0)
+                    {
+                        //this case shouldn't happen because the program doesn't allow for duplicates
+                    }
+                    else if ((b > 0) && (c == (names1.size() - 1)))
+                    {
+                        //the name in question belongs after the name already in the ArrayList
+                        names1.add(names[a]);
+                        break;
+                    }
+                }
+            }
+        }
+        return names1.toArray(new String[names1.size()]);
+    }
+
 
     /*
      *  Evolve a certain Pokemon that you are searching for in the
