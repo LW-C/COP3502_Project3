@@ -50,6 +50,16 @@ public class Pokedex
         if (pokemons[pokemons.length - 1] != null)
         {
             System.out.println("Max");
+
+            for(int index = 0; index < pokemons.length; index++)
+            {
+                if ((pokemons[index] != null) && (species.equalsIgnoreCase(pokemons[index].getSpecies())))
+                {
+                    System.out.println("Duplicate");
+                    return false;
+                }
+            }
+
             return false;
         }
 
@@ -206,6 +216,7 @@ public class Pokedex
         if (boo)
         {
             pokemons[num].evolve();
+            System.out.println(pokemons[num].getSpecies() + " has evolved!");
         }
 
         return boo;

@@ -85,28 +85,26 @@ public class Main
             {
                 userChoice = scanner.nextInt();
 
-                error = false;
-                return userChoice;
-
+                if(userChoice > 0)
+                {
+                    error = false;
+                    return userChoice;
+                }
+                else
+                    System.out.println("\nThat is not a valid choice. Try again.\n");
             }
             catch (InputMismatchException notAnInt)
             {
-                System.out.println("\nThat is not a valid choice. Try again.");
+                System.out.println("\nThat is not a valid choice. Try again.\n");
             }
             catch (Exception except)
             {
-                System.out.println("\nThat is not a valid choice. Try again.");
+                System.out.println("\nThat is not a valid choice. Try again.\n");
             }
 
             scanner.nextLine();
 
-            System.out.println("\n1. List Pokemon");
-            System.out.println("2. Add Pokemon");
-            System.out.println("3. Check a Pokemon's Stats");
-            System.out.println("4. Evolve a Pokemon");
-            System.out.println("5. Sort Pokemon");
-            System.out.println("6. Exit");
-            System.out.println("\nWhat would you like to do? ");
+            System.out.print("How many Pokemon are in your region: ");
         }
         return userChoice;
     }
@@ -139,12 +137,15 @@ public class Main
             {
                 //List Pokemon
                 String[] names = pokedex.listPokemon();
-                for(int index = 0; index < names.length; index++)
+                if(names.length == 0)
+                    System.out.println("Your PokeDex is empty!");
+                else
                 {
-                    if (names[index] == null)
-                        break;
-
-                    System.out.println((index + 1) + ". " + names[index]);
+                    for (int index = 0; index < names.length; index++) {
+                        if (names[index] == null)
+                            break;
+                        System.out.println((index + 1) + ". " + names[index]);
+                    }
                 }
             }
             else if (choice == 2)
@@ -165,7 +166,10 @@ public class Main
 
                 stats = pokedex.checkStats(input);
 
-                if((stats[0] != -1) && (stats[1] != -1) && (stats[2] != -1))
+                String[] names = pokedex.listPokemon();
+                if(names.length == 0)
+                    System.out.println("Your PokeDex is empty!");
+                else if((stats[0] != -1) && (stats[1] != -1) && (stats[2] != -1))
                 {
                     System.out.println("\nThe stats for " + input + " are:");
                     System.out.println("Attack: " + stats[0]);
